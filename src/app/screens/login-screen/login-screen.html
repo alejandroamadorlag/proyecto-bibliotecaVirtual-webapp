@@ -1,11 +1,17 @@
 <section class="login">
   <div class="wrapper">
     <div class="section-left">
+      <div class="brand-logo">
+        <span class="brand-mark"><i class="bi bi-book"></i></span>
+        <span class="brand-name"><strong>Biblioteca</strong><em>Alameda</em></span>
+      </div>
     </div>
     <div class="section-right">
       <div class="card">
         <div class="card-body">
-          <h3 class="title">Inicio de Sesión</h3>
+          <p class="eyebrow">BIENVENIDO DE NUEVO</p>
+          <h3 class="title">Inicia sesión</h3>
+          <p class="subtitle">Ingresa tus datos para acceder a Biblioteca Alameda.</p>
           <div class="container-inputs">
             <div class="pt-3 mb-3">
               <input type="email" [(ngModel)]="username" class="form-control" id="email" placeholder="Correo electrónico">
@@ -23,9 +29,6 @@
               @if (errors.password) { <div class="invalid-feedback">{{ errors.password }}</div> }
             </div>
 
-            <div class="mb-3">
-              <label class="form-check-label" for="checkbox-signin">Olvidé mi contraseña</label>
-            </div>
             <div class="d-flex flex-column align-items-center mb-3 w-100" style="text-align: center;">
               <button class="btn btn-primary" type="submit" (click)="login()">Iniciar sesión</button>
               <label class="form-check-label pt-3" for="checkbox-signin" (click)="registrar()">Registrarse</label>

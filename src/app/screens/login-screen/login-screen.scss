@@ -1,276 +1,289 @@
 /*Todos los estilos para desktop*/
 //Horizontal full pantalla
-@media (min-width: 960px) and (orientation: landscape) {
-  .wrapper{
-    width: 100vw;
-    height: 100vh;
-    //Flex
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  }
 
-  .section-left{
-    width: 50%;
-    height: 100%;
-    //Flex
-    display: flex;
+.login {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  background: #ffffff;
+}
+
+/* ----- Lado izquierdo: imagen + degradado azul ----- */
+.section-left {
+  position: relative;
+  width: 52%;
+  height: 100%;
+  background-image: url("/assets/images/login-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.section-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 45, 57, 0.85),
+    rgba(0, 81, 101, 0.55) 55%,
+    rgba(0, 29, 37, 0.72)
+  );
+}
+
+/* ----- Logo sobre la imagen (arriba a la izquierda) ----- */
+.brand-logo {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  padding-top: 0.4rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-size: 20px;
+}
+
+.brand-mark i {
+  color: #ffffff;
+  cursor: default;
+}
+
+.brand-name {
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 19px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+.brand-name strong {
+  font-weight: 700;
+}
+
+.brand-name em {
+  color: #a8e7f4;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ----- Lado derecho: formulario ----- */
+.section-right {
+  width: 48%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* La "card" es un contenedor limpio, sin borde ni sombra */
+.card {
+  width: min(26rem, 100%);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: left;
+  padding: 0;
+}
+
+/* ----- Encabezado (eyebrow + título + subtítulo) ----- */
+.eyebrow {
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: #017895;
+  margin: 0 0 8px;
+}
+
+.title {
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 30px;
+  text-align: left;
+  letter-spacing: 0;
+  color: #17242d;
+  text-transform: none;
+  margin: 0 0 8px;
+  opacity: 1;
+}
+
+.subtitle {
+  font-family: Nexa, sans-serif;
+  font-size: 13px;
+  color: #7f8c94;
+  margin: 0 0 28px;
+}
+
+.container-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.container-inputs > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ----- Inputs (más grandes) ----- */
+input {
+  width: 100%;
+  height: 52px;
+  background: #ffffff;
+  border: 1px solid #dbe2e5;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-family: Nexa, sans-serif;
+  font-size: 14px;
+  color: #34444d;
+  box-sizing: border-box;
+  opacity: 1;
+}
+
+input::placeholder {
+  color: #9aa6ad;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0092b8;
+  box-shadow: 0 0 0 3px rgba(0, 146, 184, 0.08);
+}
+
+/* ----- Grupo de contraseña (input + ojo) ----- */
+.input-group-merge {
+  width: 100%;
+}
+
+.pwd {
+  width: auto;
+  flex: 1 1 auto;
+  border-right: none !important;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group-text {
+  background: #ffffff;
+  border: 1px solid #dbe2e5;
+  border-left: none !important;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #8d989f;
+  font-size: 1.1rem !important;
+  padding: 0 14px;
+  opacity: 1;
+}
+
+.input-group-merge:focus-within .pwd,
+.input-group-merge:focus-within .input-group-text {
+  border-color: #0092b8;
+}
+
+.bi {
+  cursor: pointer;
+  color: #8d989f;
+}
+
+/* ----- Mensajes de error ----- */
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  color: #df514d;
+  font-family: Nexa, sans-serif;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+/* ----- Botón principal (más grande) ----- */
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background-color: #0092b8 !important;
+  border-color: #0092b8 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 14px rgba(0, 146, 184, 0.18);
+  text-align: center;
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0;
+  color: #ffffff;
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  background-color: #017895 !important;
+  border-color: #017895 !important;
+  transform: translateY(-1px);
+}
+
+/* ----- "Registrarse" como botón de texto (estilo Figma) ----- */
+.form-check-label {
+  text-align: center;
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #017895;
+  cursor: pointer;
+  background: transparent;
+  opacity: 1;
+}
+
+.form-check-label:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive: pantallas chicas ===== */
+@media (max-width: 960px) {
+  .wrapper {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    //Fondo
-    //Fondo de la imagen
-    background-image: url("/assets/images/logo.jpeg");
-    //background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    height: auto;
+    min-height: 100vh;
   }
 
-  .section-right{
-    width: 50%;
-    height: 100%;
-    //Flex
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+  .section-left {
+    display: none;
   }
 
-  .logo-buap{
-    width: 280px;
-    height: 350px;
-  }
-
-  .logo-fcc{
-    width: 500px;
-    height: 180px;
-  }
-
-  .title{
-    font-size: 32px;
-    text-align: center;
-    font-family: Nexa-Bold;
-    letter-spacing: 0px;
-    color: #231F20;
-    text-transform: uppercase;
-    opacity: 1;
-  }
-
-  .card{
-    width: 27rem;
-    height: 27.813rem;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: -8px 0px 0px #0000001A;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-  }
-
-  input{
-    width: 296px;
-    height: 48px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .input-group-text{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-    border-left: none!important;
-    font-size: 1rem!important;
-  }
-
-  .pwd{
-    border-right: none!important;
-  }
-
-  .form-check-label{
-    text-align: left;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    letter-spacing: 0px;
-    color: #0092B8;
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  .btn-primary{
-    width: 208px;
-    height: 48px;
-    background-color: #0092B8!important;
-    border-color: #0092B8!important;
-    border-radius: 8px!important;
-    opacity: 1;
-    //Fuente
-    //Fuente
-    text-align: center;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    opacity: 1;
-  }
-
-  .btn-primary:hover {
-    background-color: #017895!important;
-    border-color: #017895!important;
-
-  }
-
-  .bi{
-    cursor: pointer;
-  }
-}//Cierra el primer media query
-
-//Vertical full pantalla
-@media (max-width: 961px) and (orientation: portrait) {
-  .wrapper{
-    width: 100vw;
-    height: 100vh;
-    //Flex
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .section-left{
+  .section-right {
     width: 100%;
-    height: 50%;
-    //Flex
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    //Fondo
-    //Fondo de la imagen
-    background-image: url("/assets/images/login-bg.png");
-    //background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    min-height: 100vh;
   }
-
-  .section-right{
-    width: 100%;
-    height: 50%;
-    //Flex
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-  }
-  .logo-buap{
-    width: 150px;
-    height: 200px;
-  }
-
-  .logo-fcc{
-    width: 410px;
-    height: 130px;
-  }
-
-  .title{
-    font-size: 32px;
-    text-align: center;
-    font-family: Nexa-Bold;
-    letter-spacing: 0px;
-    color: #231F20;
-    text-transform: uppercase;
-    opacity: 1;
-  }
-
-  .card{
-    width: 25rem;
-    height: 25.813rem;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: -8px 0px 0px #0000001A;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-  }
-
-  input{
-    width: 296px;
-    height: 48px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .input-group-text{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-    border-left: none!important;
-    font-size: 1rem!important;
-  }
-
-  .pwd{
-    border-right: none!important;
-  }
-
-  .form-check-label{
-    text-align: left;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    letter-spacing: 0px;
-    color: #0092B8;
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  .btn-primary{
-    width: 208px;
-    height: 48px;
-    background-color: #0092B8!important;
-    border-color: #0092B8!important;
-    border-radius: 8px!important;
-    opacity: 1;
-    //Fuente
-    //Fuente
-    text-align: center;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    opacity: 1;
-  }
-
-  .btn-primary:hover {
-    background-color: #017895!important;
-    border-color: #017895!important;
-
-  }
-
-  .bi{
-    cursor: pointer;
-  }
-
 }
