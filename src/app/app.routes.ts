@@ -6,5 +6,5 @@ import { RegistroScreen } from './screens/registro-screen/registro-screen';
 export const routes: Routes = [
   { path: '', component: LoginScreen },
   { path: 'home', component: HomeScreen },
-  { path: ' registro', component: RegistroScreen },
+  { path: 'registro', component: RegistroScreen },
 ];
