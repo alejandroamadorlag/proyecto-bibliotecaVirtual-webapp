@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FacadeService } from '../../services/facade';
 
 @Component({
   imports: [
@@ -24,10 +25,16 @@ export class LoginScreen implements OnInit{
 
   constructor(
     private router: Router,
-
+    private facadeService: FacadeService
   ){}
 
   public login(){
+
+    // Validar
+    this.errors = [];
+
+    this.errors = this.facadeService.validarLogin(this.username, this.password);
+
   }
 
   public registrar(){

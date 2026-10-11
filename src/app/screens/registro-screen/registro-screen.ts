@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   imports: [],
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './registro-screen.scss',
   templateUrl: './registro-screen.html',
 })
-export class RegistroScreen {}
+export class RegistroScreen implements OnInit{
+
+
+
+  ngOnInit(): void {
+    // tu lógica de inicialización
+  }
+
+}
