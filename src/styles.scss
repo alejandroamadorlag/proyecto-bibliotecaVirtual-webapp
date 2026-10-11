@@ -1,39 +1,50 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
-html {
-  height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
+//Font face general
+@font-face {
+  font-family: 'Nexa-Bold';
+  src: url('/assets/fonts/NexaBold.eot');
+  src: url('/assets/fonts/NexaBold.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaBold.woff2') format('woff2'),
+      url('/assets/fonts/NexaBold.woff') format('woff'),
+      url('/assets/fonts/NexaBold.ttf') format('truetype'),
+      url('/assets/fonts/NexaBold.svg#NexaBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+@font-face {
+  font-family: 'Nexa-Light';
+  src: url('/assets/fonts/NexaLight.eot');
+  src: url('/assets/fonts/NexaLight.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaLight.woff2') format('woff2'),
+      url('/assets/fonts/NexaLight.woff') format('woff'),
+      url('/assets/fonts/NexaLight.ttf') format('truetype'),
+      url('/assets/fonts/NexaLight.svg#NexaLight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
-/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/assets/fonts/NexaRegular.eot');
+  src: url('/assets/fonts/NexaRegular.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaRegular.woff2') format('woff2'),
+      url('/assets/fonts/NexaRegular.woff') format('woff'),
+      url('/assets/fonts/NexaRegular.ttf') format('truetype'),
+      url('/assets/fonts/NexaRegular.svg#NexaRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Nexa; }
+
+.invalid-feedback {
+  display: block!important;
+  width: 100%;
+  font-size: 0.75rem;
+  color: #ff5b5b;
+  font-family: Nexa;
+}
