@@ -1,1 +1,35 @@
-<h1>registro-screen-works!</h1>
+<div class="wrapper">
+  <!-- ===== NUEVO: encabezado ===== -->
+        <header class="registro-header">
+          <div class="brand-logo">
+            <span class="brand-mark"><i class="bi bi-book"></i></span>
+            <span class="brand-name"><strong>Biblioteca</strong><em>Alameda</em></span>
+          </div>
+          <div class="header-login">¿Ya tienes una cuenta? <a (click)="regresar()">Iniciar sesión</a></div>
+        </header>
+
+  <div class="section-registro">
+    <section class="rol-user">
+      <div class="container">
+
+        <!-- Radio buttons: SOLO los ve el bibliotecario -->
+        @if (rol == 'bibliotecario') {
+          <div class="row mt-3" style="text-align: center;">
+            <div class="form-group col-12">
+              <mat-radio-group [(ngModel)]="user.tipo_usuario" (change)="radioChange($event)" [disabled]="editar">
+                <mat-radio-button value="bibliotecario">Bibliotecario</mat-radio-button>
+                <mat-radio-button value="cliente">Cliente</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        }
+
+        <!-- Formularios (se muestran según las banderas) -->
+        <section class="forms-registro">
+          @if (isBiblio) { <section class="registro-biblio"><app-registro-biblio [rol]="tipo_user" [datos_user]="user"></app-registro-biblio></section> }
+          @if (isCliente) { <section class="registro-cliente"><app-registro-cliente [rol]="tipo_user" [datos_user]="user"></app-registro-cliente></section> }
+        </section>
+      </div>
+    </section>
+  </div>
+</div>

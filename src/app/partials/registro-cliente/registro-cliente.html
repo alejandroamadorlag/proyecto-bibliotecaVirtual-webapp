@@ -1,0 +1,83 @@
+<div class="wrapper">
+
+  <div class="section-registro">
+    <div class="row mt-3 mb-3">
+      <div class="form-group col-12">
+        <p class="eyebrow">REGISTRO DE USUARIO</p> <!-- NUEVO -->
+        <label class="title-user" for="tipo_usuario">Crea tu cuenta</label>
+        <p class="subtitle">Completa tus datos personales. Solo te llevará un minuto.</p> <!-- NUEVO -->
+      </div>
+    </div>
+
+    <div class="body-registro">
+
+      <!-- ===== NUEVO: cada campo va envuelto en .campo ===== -->
+
+      <div class="campo">
+        <mat-form-field class="mat-input" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="cliente.first_name" placeholder="Escribe nombre" (keypress)="soloLetras($event)">
+        </mat-form-field>
+        @if (errors.first_name) { <div class="invalid-feedback">{{ errors.first_name }}</div> }
+      </div>
+
+      <div class="campo">
+        <mat-form-field class="mat-input" appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput [(ngModel)]="cliente.last_name" placeholder="Escribe apellidos" (keypress)="soloLetras($event)">
+        </mat-form-field>
+        @if (errors.last_name) { <div class="invalid-feedback">{{ errors.last_name }}</div> }
+      </div>
+
+      @if (!editar) {
+        <div class="campo">
+          <mat-form-field class="mat-input" appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [(ngModel)]="cliente.password" type="{{ inputType_1 }}" placeholder="Escribe contraseña">
+            <mat-icon matSuffix class="eye-icon" (click)="showPassword()">{{hide_1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          @if (errors.password) { <div class="invalid-feedback">{{ errors.password }}</div> }
+        </div>
+
+        <div class="campo">
+          <mat-form-field class="mat-input" appearance="outline">
+            <mat-label>Confirmar contraseña</mat-label>
+            <input matInput [(ngModel)]="cliente.confirmar_password" type="{{ inputType_2 }}" placeholder="Confirma la contraseña">
+            <mat-icon matSuffix class="eye-icon" (click)="showPwdConfirmar()">{{hide_2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          @if (errors.confirmar_password) { <div class="invalid-feedback">{{ errors.confirmar_password }}</div> }
+        </div>
+      }
+
+      <div class="campo">
+        <mat-form-field class="mat-input" appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput [(ngModel)]="cliente.email" placeholder="Escribe correo electrónico" [disabled]="editar">
+        </mat-form-field>
+        @if (errors.email) { <div class="invalid-feedback">{{ errors.email }}</div> }
+      </div>
+
+      <div class="campo">
+        <mat-form-field class="mat-input" appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput [(ngModel)]="cliente.telefono" mask='(000) 000-0000' placeholder="Escribe teléfono">
+        </mat-form-field>
+        @if (errors.telefono) { <div class="invalid-feedback">{{ errors.telefono }}</div> }
+      </div>
+
+      <div class="campo campo--full">
+        <mat-form-field class="mat-input" appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input matInput [(ngModel)]="cliente.direccion" placeholder="Escribe dirección">
+        </mat-form-field>
+        @if (errors.direccion) { <div class="invalid-feedback">{{ errors.direccion }}</div> }
+      </div>
+
+      <div class="section-buttons">
+        <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+        @if (!editar) { <button class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button> } @else { <button class="btn btn-primary" type="submit" (click)="actualizar()">Actualizar</button> }
+      </div>
+
+    </div>
+  </div>
+</div>
