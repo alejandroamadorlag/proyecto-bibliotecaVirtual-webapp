@@ -47,10 +47,11 @@ export class RegistroScreen implements OnInit{
 
   // Si NO es bibliotecario (= cliente o usuario sin registrar):
   // selecciona cliente automáticamente, sin que tenga que elegir
-  if (this.rol !== 'bibliotecario') {
-    this.isCliente = true;
-    this.tipo_user = 'cliente';
-    this.user.tipo_usuario = 'cliente';
+  if (this.rol !== 'cliente') {
+    this.rol = 'bibliotecario';
+    this.isBiblio = true;
+    this.tipo_user = 'bibliotecario';
+    this.user.tipo_usuario = 'bibliotecario';
   }
 }
 

@@ -14,6 +14,11 @@
 
         <!-- Radio buttons: SOLO los ve el bibliotecario -->
         @if (rol == 'bibliotecario') {
+          <div class="row mt-5" style="text-align: center;">
+          <div class="form-group col-12">
+            <label class="title-user" for="tipo_usuario">Tipo de usuario</label>
+          </div>
+        </div>
           <div class="row mt-3" style="text-align: center;">
             <div class="form-group col-12">
               <mat-radio-group [(ngModel)]="user.tipo_usuario" (change)="radioChange($event)" [disabled]="editar">

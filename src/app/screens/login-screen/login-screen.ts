@@ -35,6 +35,9 @@ export class LoginScreen implements OnInit{
 
     this.errors = this.facadeService.validarLogin(this.username, this.password);
 
+    this.router.navigate(["home"]);
+
+
   }
 
   public registrar(){
