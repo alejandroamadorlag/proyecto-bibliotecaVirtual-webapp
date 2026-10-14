@@ -1,0 +1,36 @@
+<div class="modal-registro">
+
+  <header class="modal-head">
+    <div class="modal-head-left">
+      <span class="modal-icon"><i class="bi bi-funnel"></i></span>
+      <div>
+        <h2>{{ editar ? 'Editar género' : 'Registrar género' }}</h2>
+        <p>Completa la información para continuar.</p>
+      </div>
+    </div>
+    <button class="modal-close" (click)="cerrar()" aria-label="Cerrar">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </header>
+
+  <div class="modal-body">
+    <div class="body-registro">
+
+      <div class="campo campo--full">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre del género</mat-label>
+          <input matInput [(ngModel)]="genero.nombre_genero" placeholder="Escribe el nombre del género">
+        </mat-form-field>
+        @if (errors.nombre_genero) { <div class="invalid-feedback">{{ errors.nombre_genero }}</div> }
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="modal-actions">
+    <button class="btn btn-cancelar" (click)="cerrar()">Cancelar</button>
+    @if (!editar) { <button class="btn btn-registrar" (click)="registrar()">Guardar registro</button> }
+    @if (editar)  { <button class="btn btn-registrar" (click)="actualizar()">Actualizar</button> }
+  </footer>
+
+</div>
