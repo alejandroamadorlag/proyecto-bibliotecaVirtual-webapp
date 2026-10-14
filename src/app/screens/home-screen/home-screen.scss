@@ -1,0 +1,11 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-shell {
+  margin-left: 248px;            // ← el ancho exacto del sidebar fijo
+  width: calc(100% - 248px);
+  min-height: 100vh;
+  background: #f5f7f8;           // fondo gris del Figma
+}

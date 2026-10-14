@@ -69,3 +69,28 @@ body { margin: 0; font-family: Nexa; }
   padding-left: 16px !important;
   padding-right: 16px !important;
 }
+
+.modal-autor-panel {
+  --mdc-dialog-container-shape: 24px;
+}
+
+.modal-autor-panel .mat-mdc-dialog-container,
+.modal-autor-panel .mat-mdc-dialog-surface,
+.modal-autor-panel .mdc-dialog__surface {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.modal-autor-panel .mat-mdc-dialog-surface,
+.modal-autor-panel .mdc-dialog__surface {
+  padding: 0 !important;
+}
+
+.modal-autor-panel { --mdc-dialog-container-shape: 24px; }
+
+.modal-autor-panel .mat-mdc-dialog-container,
+.modal-autor-panel .mat-mdc-dialog-surface,
+.modal-autor-panel .mdc-dialog__surface {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}

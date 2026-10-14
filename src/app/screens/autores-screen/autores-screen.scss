@@ -1,0 +1,173 @@
+:host {
+  --primary: #0092b8;
+  --primary-dark: #017895;
+  --ink: #17242d;
+  --muted: #6e7b84;
+  --line: #e5eaed;
+  display: block;
+}
+
+.body-autores {
+  padding: 34px;
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+/* Bootstrap .container dentro de la página: que no limite el ancho */
+.body-autores .container {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+/* Encabezado de bienvenida */
+.title-perfil {
+  display: inline-block;
+  color: var(--ink);
+}
+.title-perfil:first-of-type {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -.6px;
+}
+.title-perfil:last-of-type {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+/* Barra de título de la tabla */
+.alert-primary {
+  background: #eaf8fb;
+  border: 1px solid #d7f0f5;
+  border-radius: 12px;
+  color: var(--primary-dark);
+  padding: 15px 18px;
+  margin-bottom: 0;
+}
+.title-table {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+/* Panel que envuelve la tabla */
+.mat-elevation-z8 {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 7px rgba(30, 48, 59, .04);
+}
+
+table {
+  width: 100%;
+  background: #fff;
+}
+
+/* Cabecera de columnas */
+th.mat-mdc-header-cell {
+  height: 44px;
+  background: #fafbfb;
+  color: #909ba2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #edf0f2;
+}
+
+/* Celdas */
+td.mat-mdc-cell {
+  height: 58px;
+  color: #68757d;
+  font-size: 13px;
+  border-bottom: 1px solid #eef1f2;
+}
+tr.mat-mdc-row:hover td.mat-mdc-cell {
+  background: #fcfdfd;
+}
+
+/* Íconos de acción como botoncitos redondeados (estilo Figma) */
+.td-editar i,
+.td-eliminar i {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: .15s;
+}
+.td-editar i {
+  color: #007f9f;
+  background: #e7f6f9;
+  &:hover { background: #d7f0f5; }
+}
+.td-eliminar i {
+  color: #d35853;
+  background: #fdf0ef;
+  &:hover { background: #fbe4e2; }
+}
+
+/* Paginador */
+.mat-mdc-paginator {
+  background: #fff;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 27px;
+}
+
+.welcome .eyebrow {
+  color: var(--primary-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  margin: 0 0 8px;
+}
+
+.welcome h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -.9px;
+  margin: 0 0 6px;
+}
+
+.welcome .subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Botón teal del Figma */
+.btn {
+  min-height: 39px;
+  padding: 0 16px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: .2s;
+}
+.btn--primary {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 6px 14px rgba(0, 146, 184, .18);
+
+  &:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+}
