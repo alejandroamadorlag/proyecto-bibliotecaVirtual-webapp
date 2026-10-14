@@ -94,3 +94,11 @@ body { margin: 0; font-family: Nexa; }
   border-radius: 24px !important;
   overflow: hidden !important;
 }
+
+/* Fondo sólido para los desplegables de autocomplete y select */
+.mat-mdc-autocomplete-panel,
+.mat-mdc-select-panel {
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgba(16, 37, 48, .18) !important;
+  border-radius: 12px !important;
+}

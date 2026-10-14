@@ -1,0 +1,74 @@
+<div class="modal-registro">
+
+  <header class="modal-head">
+    <div class="modal-head-left">
+      <span class="modal-icon"><i class="bi bi-book"></i></span>
+      <div>
+        <h2>{{ editar ? 'Editar libro' : 'Registrar libro' }}</h2>
+        <p>Completa la información para continuar.</p>
+      </div>
+    </div>
+    <button class="modal-close" (click)="cerrar()" aria-label="Cerrar">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </header>
+
+  <div class="modal-body">
+    <div class="body-registro">
+
+      <div class="campo campo--full">
+        <mat-form-field appearance="outline">
+          <mat-label>Título</mat-label>
+          <input matInput [(ngModel)]="libro.titulo" placeholder="Escribe el título">
+        </mat-form-field>
+        @if (errors.titulo) { <div class="invalid-feedback">{{ errors.titulo }}</div> }
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="outline">
+          <mat-label>Autor</mat-label>
+          <input matInput
+                 [(ngModel)]="autorSeleccionado"
+                 [matAutocomplete]="autoAutor"
+                 (ngModelChange)="filtrarAutores($event)"
+                 placeholder="Escribe o selecciona el autor">
+          <mat-autocomplete #autoAutor="matAutocomplete"
+                            [displayWith]="mostrarAutor"
+                            (optionSelected)="seleccionarAutor($event)">
+            @for (a of autoresFiltrados; track a.id) {
+              <mat-option [value]="a">{{ a.first_name }} {{ a.last_name }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        @if (errors.id_autor) { <div class="invalid-feedback">{{ errors.id_autor }}</div> }
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="outline">
+          <mat-label>Género</mat-label>
+          <input matInput
+                 [(ngModel)]="generoSeleccionado"
+                 [matAutocomplete]="autoGenero"
+                 (ngModelChange)="filtrarGeneros($event)"
+                 placeholder="Escribe o selecciona el género">
+          <mat-autocomplete #autoGenero="matAutocomplete"
+                            [displayWith]="mostrarGenero"
+                            (optionSelected)="seleccionarGenero($event)">
+            @for (g of generosFiltrados; track g.id) {
+              <mat-option [value]="g">{{ g.nombre_genero }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        @if (errors.id_genero) { <div class="invalid-feedback">{{ errors.id_genero }}</div> }
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="modal-actions">
+    <button class="btn btn-cancelar" (click)="cerrar()">Cancelar</button>
+    @if (!editar) { <button class="btn btn-registrar" (click)="registrar()">Guardar registro</button> }
+    @if (editar)  { <button class="btn btn-registrar" (click)="actualizar()">Actualizar</button> }
+  </footer>
+
+</div>
