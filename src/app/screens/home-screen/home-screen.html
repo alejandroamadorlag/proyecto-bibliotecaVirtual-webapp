@@ -1,1 +1,6 @@
-<p>home-screen works!</p>
+<div class="layout">
+  <app-sidebar></app-sidebar>   <!-- se declara UNA vez -->
+  <div class="main-shell">           <!-- la barra superior, también fija -->
+    <router-outlet></router-outlet>          <!-- AQUÍ se intercambian las pantallas -->
+  </div>
+</div>

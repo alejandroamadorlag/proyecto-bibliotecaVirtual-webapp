@@ -1,1 +1,68 @@
-<p>sidebar works!</p>
+<div class="wrapper">
+  <nav class="sidebar">
+
+    <!-- Logo + nombre de la biblioteca -->
+    <div class="sidebar-head">
+      <div class="logo">
+        <span class="logo-mark"><i class="bi bi-book"></i></span>
+        <span class="logo-text"><strong>Biblioteca</strong><em>Alameda</em></span>
+      </div>
+    </div>
+
+    <!-- Menú de navegación -->
+    <ul class="nav-menu">
+      @if (rol !== 'cliente') {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/inicio" routerLinkActive="active">
+            <i class="bi bi-grid"></i><span>Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/autores" routerLinkActive="active">
+            <i class="bi bi-pencil-square"></i><span>Autores</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/generos" routerLinkActive="active">
+            <i class="bi bi-funnel"></i><span>Géneros</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/libros" routerLinkActive="active">
+            <i class="bi bi-book"></i><span>Libros</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/clientes" routerLinkActive="active">
+            <i class="bi bi-people"></i><span>Clientes</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/prestamos" routerLinkActive="active">
+            <i class="bi bi-clock"></i><span>Préstamos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/usuarios" routerLinkActive="active">
+            <i class="bi bi-person"></i><span>Usuarios</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home/actividad" routerLinkActive="active">
+            <i class="bi bi-activity"></i><span>Actividad</span>
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- Cerrar Sesión: acción de sesión, separada del menú -->
+    @if (token !== '') {
+      <div class="nav-footer">
+        <a class="nav-link nav-logout" (click)="logout()">
+          <i class="bi bi-box-arrow-left"></i><span>Cerrar Sesión</span>
+        </a>
+      </div>
+    }
+
+  </nav>
+</div>

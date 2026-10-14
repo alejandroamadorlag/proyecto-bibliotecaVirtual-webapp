@@ -35,9 +35,15 @@ export class LoginScreen implements OnInit{
 
     this.errors = this.facadeService.validarLogin(this.username, this.password);
 
-    this.router.navigate(["home"]);
-
-
+    //Si pasa la validación ir a la página de home
+    this.facadeService.login(this.username, this.password).subscribe(
+      (response)=>{
+        this.facadeService.saveUserData(response);
+        this.router.navigate(["home"]);
+      }, (error)=>{
+        alert("No se pudo iniciar sesión");
+      }
+    );
   }
 
   public registrar(){
