@@ -20,7 +20,7 @@ export class LibrosScreen implements OnInit, AfterViewInit {
   public token: string = "";
   public lista_libros: any[] = [];
 
-  public displayedColumns: string[] = ['id_libro', 'titulo', 'autor', 'genero', 'editar', 'eliminar'];
+  public displayedColumns: string[] = ['id_libro', 'titulo', 'autor', 'genero', 'estado', 'editar', 'eliminar'];
   public dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -44,11 +44,11 @@ export class LibrosScreen implements OnInit, AfterViewInit {
   }
 
   public obtenerLibros(): void {
-    this.librosService.obtenerListaLibros().subscribe({
-      next: (r) => { this.lista_libros = r; this.dataSource.data = r; },
-      error: (e) => { console.error("Error al obtener libros", e); }
-    });
-  }
+  this.librosService.obtenerListaLibrosTodos().subscribe({
+    next: (r) => { this.lista_libros = r; this.dataSource.data = r; },
+    error: (e) => { console.error("Error al obtener libros", e); }
+  });
+}
 
   public registrarLibro(): void {
     const dialogRef = this.dialog.open(RegistroLibro, {

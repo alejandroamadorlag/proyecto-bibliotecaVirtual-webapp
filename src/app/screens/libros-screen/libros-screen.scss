@@ -107,3 +107,14 @@ tr.mat-mdc-row:hover td.mat-mdc-cell { background: #fcfdfd; }
   box-shadow: 0 6px 14px rgba(0, 146, 184, .18);
   &:hover { background: var(--primary-dark); transform: translateY(-1px); }
 }
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 650;
+}
+.estado--disponible    { color: #287e60; background: #e8f5ef; }
+.estado--no-disponible { color: #bf514c; background: #fceceb; }
