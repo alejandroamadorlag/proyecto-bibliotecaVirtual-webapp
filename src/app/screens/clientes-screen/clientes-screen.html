@@ -1,1 +1,65 @@
-<p>clientes-screen works!</p>
+<div class="body-clientes">
+
+  <div class="welcome listing-title">
+    <div>
+      <p class="eyebrow">ADMINISTRACIÓN</p>
+      <h1>Clientes</h1>
+      <p class="subtitle">Consulta y administra la comunidad de lectores.</p>
+    </div>
+
+    <button class="btn btn--primary" (click)="registrarCliente()">
+      <i class="bi bi-plus-lg"></i> Registrar cliente
+    </button>
+  </div>
+
+  <div class="container">
+    @if (rol !== 'cliente') {
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{ element.first_name }} {{ element.last_name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Correo electrónico </th>
+            <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+            <td mat-cell *matCellDef="let element"> {{ element.telefono }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" class="td-editar">
+              <i class="bi bi-pencil-square" (click)="goEditar(element.id)"></i>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element" class="td-eliminar">
+              <i class="bi bi-trash3-fill" (click)="delete(element.id)"></i>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Seleccionar página de clientes">
+        </mat-paginator>
+      </div>
+    }
+  </div>
+</div>

@@ -97,6 +97,12 @@ export class ClientesService {
     return this.http.get<any>(`${environment.url_api}/lista-clientesmas/`, {headers:headers});
   }
 
+  public getClienteByID(idCliente: any): Observable<any> {
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  return this.http.get<any>(`${environment.url_api}/clientes/?id=${idCliente}`, { headers: headers });
+  }
+
   public eliminarCliente (idCliente: any): Observable <any>{
     return this.http.put<any>(`${environment.url_api}/delete-cliente/?id=${idCliente}`, httpOptions);
   }

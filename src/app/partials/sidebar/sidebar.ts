@@ -28,16 +28,15 @@ export class Sidebar implements OnInit {
 
   //Cerrar sesión
   public logout() {
-    this.facadeService.logout().subscribe({
-      next: (response) => {
-        console.log("Entró");
-        this.facadeService.destroyUser();
-        //Navega al login
-        this.router.navigate(["/"]);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
+  this.facadeService.logout().subscribe({
+    next: () => this.finalizarSesion(),
+    error: () => this.finalizarSesion(),
+  });
+}
+
+private finalizarSesion() {
+  this.facadeService.destroyUser();   // borra las cookies
+  this.router.navigate(["/"]);
+}
+
 }

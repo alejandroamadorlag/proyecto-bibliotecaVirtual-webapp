@@ -89,35 +89,34 @@ export class FacadeService {
     return this.cookieService.get(key);
   }
 
-  saveCookieValue(key:string, value:string){
-    var secure = environment.url_api.indexOf("https")!=-1;
-    this.cookieService.set(key, value, undefined, undefined, undefined, secure, secure?"None":"Lax");
-  }
-
   getSessionToken(){
     return this.cookieService.get(session_cookie_name);
   }
 
+  saveCookieValue(key:string, value:string){
+  var secure = environment.url_api.indexOf("https")!=-1;
+  this.cookieService.set(key, value, undefined, '/', undefined, secure, secure?"None":"Lax");
+}
 
-  saveUserData(user_data:any){
-    var secure = environment.url_api.indexOf("https")!=-1;
-    if(user_data.rol == "bibliotecario"){
-      this.cookieService.set(user_id_cookie_name, user_data.id, undefined, undefined, undefined, secure, secure?"None":"Lax");
-      this.cookieService.set(user_email_cookie_name, user_data.email, undefined, undefined, undefined, secure, secure?"None":"Lax");
-      this.cookieService.set(user_complete_name_cookie_name, user_data.first_name + " " + user_data.last_name, undefined, undefined, undefined, secure, secure?"None":"Lax");
-    }else {
-      this.cookieService.set(user_id_cookie_name, user_data.user.id, undefined, undefined, undefined, secure, secure?"None":"Lax");
-      this.cookieService.set(user_email_cookie_name, user_data.user.email, undefined, undefined, undefined, secure, secure?"None":"Lax");
-      this.cookieService.set(cliente_id_cookie_name, user_data.id, undefined, undefined, undefined, secure, secure?"None":"Lax");
-      this.cookieService.set(user_complete_name_cookie_name, user_data.user.first_name + " " + user_data.user.last_name, undefined, undefined, undefined, secure, secure?"None":"Lax");
-    }
-    this.cookieService.set(session_cookie_name, user_data.token, undefined, undefined, undefined, secure, secure?"None":"Lax");
-    this.cookieService.set(group_name_cookie_name, user_data.rol, undefined, undefined, undefined, secure, secure?"None":"Lax");
+saveUserData(user_data:any){
+  var secure = environment.url_api.indexOf("https")!=-1;
+  if(user_data.rol == "bibliotecario"){
+    this.cookieService.set(user_id_cookie_name, user_data.id, undefined, '/', undefined, secure, secure?"None":"Lax");
+    this.cookieService.set(user_email_cookie_name, user_data.email, undefined, '/', undefined, secure, secure?"None":"Lax");
+    this.cookieService.set(user_complete_name_cookie_name, user_data.first_name + " " + user_data.last_name, undefined, '/', undefined, secure, secure?"None":"Lax");
+  }else {
+    this.cookieService.set(user_id_cookie_name, user_data.user.id, undefined, '/', undefined, secure, secure?"None":"Lax");
+    this.cookieService.set(user_email_cookie_name, user_data.user.email, undefined, '/', undefined, secure, secure?"None":"Lax");
+    this.cookieService.set(cliente_id_cookie_name, user_data.id, undefined, '/', undefined, secure, secure?"None":"Lax");
+    this.cookieService.set(user_complete_name_cookie_name, user_data.user.first_name + " " + user_data.user.last_name, undefined, '/', undefined, secure, secure?"None":"Lax");
   }
+  this.cookieService.set(session_cookie_name, user_data.token, undefined, '/', undefined, secure, secure?"None":"Lax");
+  this.cookieService.set(group_name_cookie_name, user_data.rol, undefined, '/', undefined, secure, secure?"None":"Lax");
+}
 
   destroyUser(){
-    this.cookieService.deleteAll();
-  }
+  this.cookieService.deleteAll('/');   // borra todas las cookies en el path raíz
+}
 
   getUserEmail(){
     return this.cookieService.get(user_email_cookie_name);

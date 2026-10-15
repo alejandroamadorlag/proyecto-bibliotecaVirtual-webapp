@@ -52,8 +52,18 @@ export class RegistroCliente implements OnInit {
   ngOnInit(): void {
   this.cliente = this.clientesService.esquemaCliente();   // ← del servicio, no de cliente
   this.cliente.rol = this.rol;
+
+  if (this.datos_user && this.datos_user.id) {   // ← solo es edición si trae un id
+    this.editar = true;
+    this.cliente = { ...this.datos_user };
+    this.cliente.rol = this.rol;
+  } else {
+    this.cliente = this.clientesService.esquemaCliente();
+    this.cliente.rol = this.rol;
+  }
   console.log("Datos del cliente: ", this.cliente);
   }
+
 
   //Funciones para password
   showPassword() {

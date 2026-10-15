@@ -14,6 +14,7 @@ import { InicioScreen } from './screens/inicio-screen/inicio-screen';
 export const routes: Routes = [
   { path: '', component: LoginScreen },
   { path: 'registro', component: RegistroScreen },
+  { path: 'registro/:id', component: RegistroScreen },
   {
   path: 'home',
   component: HomeScreen,          // el layout (sidebar + topbar + outlet)
