@@ -54,11 +54,14 @@ export class RegistroAutor implements OnInit {
   }
 
   public actualizar(): void {
-    this.errors = this.autoresService.validarAutor(this.autor, this.editar);
-    if (Object.keys(this.errors).length > 0) return;
+  this.errors = this.autoresService.validarAutor(this.autor, this.editar);
+  if (Object.keys(this.errors).length > 0) return;
 
-
-  }
+  this.autoresService.editarAutor(this.autor).subscribe({
+    next: () => { this.dialogRef.close({ recargar: true }); },
+    error: (e) => { console.error("Error al actualizar autor", e); }
+  });
+}
 
 
 

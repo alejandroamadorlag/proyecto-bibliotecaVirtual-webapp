@@ -47,22 +47,26 @@ export class RegistroScreen implements OnInit{
   ngOnInit(): void {
   this.rol = this.facadeService.getUserGroup();
 
-  // Modo edición de cliente (viene id en la URL)
-  if (this.activatedRoute.snapshot.params['id'] != undefined) {
+  const id = this.activatedRoute.snapshot.params['id'];
+  const tipo = this.activatedRoute.snapshot.queryParams['tipo'] || 'cliente';
+
+  if (id != undefined) {
     this.editar = true;
-    this.idUser = this.activatedRoute.snapshot.params['id'];
-    this.obtenerClienteByID();
+    this.idUser = id;
+    if (tipo === 'bibliotecario') {
+      this.obtenerBibliotecarioByID();
+    } else {
+      this.obtenerClienteByID();
+    }
     return;
   }
 
-  // Alta nueva
+  // Alta nueva (igual que antes)
   if (this.rol === 'bibliotecario') {
-    // Bibliotecario: puede registrar ambos → muestra radios, por defecto bibliotecario
     this.isBiblio = true;
     this.tipo_user = 'bibliotecario';
     this.user.tipo_usuario = 'bibliotecario';
   } else {
-    // Sin sesión o cliente: solo cliente (sin radios)
     this.rol = 'cliente';
     this.isCliente = true;
     this.tipo_user = 'cliente';
@@ -104,6 +108,28 @@ export class RegistroScreen implements OnInit{
       this.cdr.detectChanges();
     },
     error: (e) => { console.error("ERROR al traer cliente:", e); }   // ← debug
+  });
+}
+
+
+public obtenerBibliotecarioByID(): void {
+  this.bibliotecariosService.getBibliotecarioByID(this.idUser).subscribe({
+    next: (response) => {
+      this.user = {
+        id: response.id,
+        first_name: response.user?.first_name,
+        last_name:  response.user?.last_name,
+        email:      response.user?.email,
+        telefono:   response.telefono,
+        rfc:        response.rfc,
+        direccion:  response.direccion,
+        tipo_usuario: 'bibliotecario'
+      };
+      this.tipo_user = 'bibliotecario';
+      this.isBiblio = true;
+      this.cdr.detectChanges();
+    },
+    error: (e) => { console.error("ERROR al traer bibliotecario:", e); }
   });
 }
 

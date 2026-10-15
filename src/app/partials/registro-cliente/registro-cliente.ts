@@ -121,9 +121,21 @@ export class RegistroCliente implements OnInit {
     }
   }
 
-  public actualizar() {
+  public actualizar(): void {
+  this.errors = this.clientesService.validarCliente(this.cliente, this.editar);
+  if (Object.keys(this.errors).length > 0) return;
 
-  }
+  this.clientesService.editarCliente(this.cliente).subscribe({
+    next: () => {
+      alert("Cliente actualizado correctamente");
+      this.router.navigate(['/home/clientes']);
+    },
+    error: (e) => {
+      alert("No se pudo actualizar el cliente");
+      console.error("Error al actualizar cliente", e);
+    }
+  });
+}
 
   public soloLetras(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);

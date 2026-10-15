@@ -112,4 +112,17 @@ export class BibliotecariosService {
   public eliminarBiblio (idBiblio: any): Observable <any>{
     return this.http.put<any>(`${environment.url_api}/delete-user/?id=${idBiblio}`, httpOptions);
   }
+
+  public getBibliotecarioByID(idBiblio: any): Observable<any> {
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  return this.http.get<any>(`${environment.url_api}/bibliotecarios/?id=${idBiblio}`, { headers: headers });
+}
+
+  public editarBibliotecario(data: any): Observable<any> {
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  return this.http.put<any>(`${environment.url_api}/edit-biblio/`, data, { headers: headers });
+}
+
 }

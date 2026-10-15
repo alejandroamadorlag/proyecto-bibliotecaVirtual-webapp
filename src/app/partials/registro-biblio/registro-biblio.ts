@@ -50,6 +50,15 @@ export class RegistroBiblio implements OnInit{
 
     console.log("Datos del bibliotecario: ", this.bibliotecario);
 
+    if (this.datos_user && this.datos_user.id) {
+    this.editar = true;
+    this.bibliotecario = { ...this.datos_user };
+    this.bibliotecario.rol = this.rol;
+  } else {
+    this.bibliotecario = this.bibliotecariosService.esquemaBibliotecario();
+    this.bibliotecario.rol = this.rol;
+  }
+
   }
 
   //Funciones para password
@@ -115,9 +124,21 @@ export class RegistroBiblio implements OnInit{
     }
   }
 
-  public actualizar(){
+  public actualizar(): void {
+  this.errors = this.bibliotecariosService.validarAdmin(this.bibliotecario, this.editar);
+  if (Object.keys(this.errors).length > 0) return;
 
-  }
+  this.bibliotecariosService.editarBibliotecario(this.bibliotecario).subscribe({
+    next: () => {
+      alert("Bibliotecario actualizado correctamente");
+      this.router.navigate(['/home/usuarios']);
+    },
+    error: (e) => {
+      alert("No se pudo actualizar el bibliotecario");
+      console.error("Error al actualizar bibliotecario", e);
+    }
+  });
+}
 
   public soloLetras(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);

@@ -54,9 +54,13 @@ export class UsuariosScreen implements OnInit, AfterViewInit {
     this.router.navigate(['registro']);
   }
 
-  public goEditar(id: number): void {
-    this.router.navigate(['registro', id]);
+  public goEditar(element: any): void {
+  if (element.rol === 'bibliotecario') {
+    this.router.navigate(['registro', element.bibliotecario_id], { queryParams: { tipo: 'bibliotecario' } });
+  } else {
+    this.router.navigate(['registro', element.cliente_id], { queryParams: { tipo: 'cliente' } });
   }
+}
 
   public delete(id: number): void {
   const dialogRef = this.dialog.open(EliminarUsuario, {

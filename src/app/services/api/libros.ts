@@ -85,5 +85,11 @@ export class LibrosService {
     return this.http.put<any>(`${environment.url_api}/delete-libro/?id_libro=${idLibro}`, httpOptions);
   }
 
+  public editarLibro(data: any): Observable<any> {
+  var token = this.facadeService.getSessionToken();
+  var headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+  return this.http.put<any>(`${environment.url_api}/edit-libro/`, data, { headers: headers });
+}
+
 
 }

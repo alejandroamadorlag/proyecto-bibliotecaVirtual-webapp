@@ -125,9 +125,14 @@ export class RegistroLibro implements OnInit {
 }
 
   public actualizar(): void {
-    this.errors = this.librosService.validarLibro(this.libro, this.editar);
-    if (Object.keys(this.errors).length > 0) return;
-  }
+  this.errors = this.librosService.validarLibro(this.libro, this.editar);
+  if (Object.keys(this.errors).length > 0) return;
+
+  this.librosService.editarLibro(this.libro).subscribe({
+    next: () => { this.dialogRef.close({ recargar: true }); },
+    error: (e) => { console.error("Error al actualizar libro", e); }
+  });
+}
 
   public cerrar(): void {
     this.dialogRef.close();

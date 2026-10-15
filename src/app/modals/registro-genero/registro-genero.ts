@@ -45,11 +45,14 @@ export class RegistroGenero implements OnInit {
   }
 
   public actualizar(): void {
-    this.errors = this.generosService.validarGenero(this.genero, this.editar);
-    if (Object.keys(this.errors).length > 0) return;
+  this.errors = this.generosService.validarGenero(this.genero, this.editar);
+  if (Object.keys(this.errors).length > 0) return;
 
-    // Pendiente: tu servicio aún no tiene editarGenero(); cuando lo agregues va aquí
-  }
+  this.generosService.editarGenero(this.genero).subscribe({
+    next: () => { this.dialogRef.close({ recargar: true }); },
+    error: (e) => { console.error("Error al actualizar género", e); }
+  });
+}
 
   public cerrar(): void {
     this.dialogRef.close();
