@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FacadeService } from '../../services/facade';
 import { LibrosService } from '../../services/api/libros';
 import { RegistroLibro } from '../../modals/registro-libro/registro-libro';
+import { EliminarLibro } from '../../modals/eliminar-libro/eliminar-libro';
 
 @Component({
   selector: 'app-libros-screen',
@@ -70,6 +71,22 @@ export class LibrosScreen implements OnInit, AfterViewInit {
   }
 
   public delete(id: number): void {
-    // Pendiente: confirmación + eliminarLibro
+  const dialogRef = this.dialog.open(EliminarLibro, {
+    width: '390px',
+    panelClass: 'modal-autor-panel',
+    data: { id }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result?.isDelete) {
+      this.obtenerLibros();   // recarga la tabla
+    }
+  });
+}
+
+  public applyFilter(event: Event): void {
+  const valor = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = valor.trim().toLowerCase();
   }
+
 }

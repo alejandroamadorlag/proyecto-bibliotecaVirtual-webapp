@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FacadeService } from '../../services/facade';
 import { GenerosService } from '../../services/api/generos';
 import { RegistroGenero } from '../../modals/registro-genero/registro-genero';
+import { EliminarGenero } from '../../modals/eliminar-genero/eliminar-genero';
 
 @Component({
   selector: 'app-generos-screen',
@@ -83,6 +84,22 @@ export class GenerosScreen implements OnInit, AfterViewInit {
   }
 
   public delete(id: number): void {
-    // Pendiente: confirmación + llamada a eliminarGenero
-  }
+  const dialogRef = this.dialog.open(EliminarGenero, {
+    width: '390px',
+    panelClass: 'modal-autor-panel',
+    data: { id }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result?.isDelete) {
+      this.obtenerGeneros();   // recarga la tabla
+    }
+  });
+}
+
+  public applyFilter(event: Event): void {
+  const valor = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = valor.trim().toLowerCase();
+}
+
 }

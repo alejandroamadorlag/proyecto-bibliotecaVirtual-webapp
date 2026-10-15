@@ -2,8 +2,10 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 import { FacadeService } from '../../services/facade';
 import { ClientesService } from '../../services/api/clientes';
+import { EliminarCliente } from '../../modals/eliminar-cliente/eliminar-cliente';
 
 @Component({
   selector: 'app-clientes-screen',
@@ -26,6 +28,7 @@ export class ClientesScreen implements OnInit, AfterViewInit {
     private facadeService: FacadeService,
     private clientesService: ClientesService,
     private router: Router,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -40,20 +43,20 @@ export class ClientesScreen implements OnInit, AfterViewInit {
   }
 
   public obtenerClientes(): void {
-    this.clientesService.obtenerListaClientes().subscribe({
-      next: (r) => {
-        this.lista_clientes = r;
-        // El nombre y correo vienen anidados en .user, los aplanamos para la tabla
-        this.lista_clientes.forEach(c => {
-          c.first_name = c.user?.first_name;
-          c.last_name  = c.user?.last_name;
-          c.email      = c.user?.email;
-        });
-        this.dataSource.data = this.lista_clientes;
-      },
-      error: (e) => { console.error("Error al obtener clientes", e); }
-    });
-  }
+  this.clientesService.obtenerListaClientes().subscribe({
+    next: (r) => {
+      this.lista_clientes = r;
+      this.lista_clientes.forEach(c => {
+        c.first_name = c.user?.first_name;
+        c.last_name  = c.user?.last_name;
+        c.email      = c.user?.email;
+        c.user_id    = c.user?.id;      // ← id del usuario, para eliminar
+      });
+      this.dataSource.data = this.lista_clientes;
+    },
+    error: (e) => { console.error("Error al obtener clientes", e); }
+  });
+}
 
   // El botón de registro NO abre modal: navega a la pantalla de registro
   public registrarCliente(): void {
@@ -64,7 +67,23 @@ export class ClientesScreen implements OnInit, AfterViewInit {
     this.router.navigate(['registro', id]);   // ← requiere una ruta registro/:id (ver nota)
   }
 
-  public delete(id: number): void {
-    // Pendiente: confirmación + eliminarCliente
+  public delete(idUsuario: number): void {
+  const dialogRef = this.dialog.open(EliminarCliente, {
+    width: '390px',
+    panelClass: 'modal-autor-panel',
+    data: { id: idUsuario }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result?.isDelete) {
+      this.obtenerClientes();
+    }
+  });
+}
+
+  public applyFilter(event: Event): void {
+  const valor = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = valor.trim().toLowerCase();
   }
+
 }

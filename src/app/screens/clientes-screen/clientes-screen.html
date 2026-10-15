@@ -14,6 +14,12 @@
 
   <div class="container">
     @if (rol !== 'cliente') {
+
+      <div class="table-search">
+        <i class="bi bi-search"></i>
+        <input type="text" (input)="applyFilter($event)" placeholder="Buscar...">
+      </div>
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
 
@@ -47,7 +53,7 @@
           <ng-container matColumnDef="eliminar">
             <th mat-header-cell *matHeaderCellDef> Eliminar </th>
             <td mat-cell *matCellDef="let element" class="td-eliminar">
-              <i class="bi bi-trash3-fill" (click)="delete(element.id)"></i>
+              <i class="bi bi-trash3-fill" (click)="delete(element.user_id)"></i>
             </td>
           </ng-container>
 

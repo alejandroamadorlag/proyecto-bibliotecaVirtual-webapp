@@ -6,6 +6,7 @@ import { FacadeService } from '../../services/facade';
 import { AutoresService } from '../../services/api/autores';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistroAutor } from '../../modals/registro-autor/registro-autor';
+import { EliminarAutor } from '../../modals/eliminar-autor/eliminar-autor';
 
 @Component({
   selector: 'app-autores-screen',
@@ -79,7 +80,17 @@ export class AutoresScreen implements OnInit, AfterViewInit {
   }
 
   public delete(id: number): void {
-    // Pendiente: aquí va la confirmación + la llamada al backend para eliminar
+  const dialogRef = this.dialog.open(EliminarAutor, {
+    width: '390px',
+    panelClass: 'modal-autor-panel',   // reutiliza el modal redondeado
+    data: { id }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result?.isDelete) {
+      this.obtenerAutores();   // recarga la tabla
+    }
+  });
   }
 
   public registrarAutor(): void {
@@ -96,4 +107,10 @@ export class AutoresScreen implements OnInit, AfterViewInit {
     }
   });
 }
+
+public applyFilter(event: Event): void {
+  const valor = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = valor.trim().toLowerCase();
+}
+
 }

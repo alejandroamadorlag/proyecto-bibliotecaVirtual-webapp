@@ -1,0 +1,68 @@
+:host {
+  --line: #e5eaed;
+  --muted: #6e7b84;
+  display: block;
+}
+
+.confirm-modal {
+  text-align: center;
+  padding: 30px 26px;
+  background: #fff;
+}
+
+.warning-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 17px;
+  background: #fceceb;
+  color: #d4544f;
+  font-size: 22px;
+}
+
+.confirm-modal h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #17242d;
+}
+
+.confirm-modal p {
+  color: #718087;
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin: 0 12px 24px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 0 20px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-cancelar {
+  color: #52616a;
+  background: #fff;
+  border-color: #dce3e6;
+  &:hover { background: #f5f8f9; }
+}
+
+.btn-eliminar {
+  color: #fff;
+  background: #df514d;
+  box-shadow: 0 6px 14px rgba(223, 81, 77, .18);
+  &:hover { background: #c0392b; transform: translateY(-1px); }
+}

@@ -2,8 +2,10 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 import { FacadeService } from '../../services/facade';
 import { BibliotecariosService } from '../../services/api/bibliotecarios';
+import { EliminarUsuario } from '../../modals/eliminar-usuario/eliminar-usuario';
 
 @Component({
   selector: 'app-usuarios-screen',
@@ -26,6 +28,7 @@ export class UsuariosScreen implements OnInit, AfterViewInit {
     private facadeService: FacadeService,
     private bibliotecariosService: BibliotecariosService,
     private router: Router,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +59,22 @@ export class UsuariosScreen implements OnInit, AfterViewInit {
   }
 
   public delete(id: number): void {
-    // Pendiente: confirmación + eliminarBiblio
+  const dialogRef = this.dialog.open(EliminarUsuario, {
+    width: '390px',
+    panelClass: 'modal-autor-panel',
+    data: { id }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result?.isDelete) {
+      this.obtenerUsuarios();
+    }
+  });
+}
+
+  public applyFilter(event: Event): void {
+  const valor = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = valor.trim().toLowerCase();
   }
+
 }

@@ -14,6 +14,12 @@
 
   <div class="container">
     @if (rol !== 'cliente') {
+
+      <div class="table-search">
+        <i class="bi bi-search"></i>
+        <input type="text" (input)="applyFilter($event)" placeholder="Buscar...">
+      </div>
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
 

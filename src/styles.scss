@@ -102,3 +102,43 @@ body { margin: 0; font-family: Nexa; }
   box-shadow: 0 10px 30px rgba(16, 37, 48, .18) !important;
   border-radius: 12px !important;
 }
+
+.table-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(340px, 100%);
+  height: 40px;
+  padding: 0 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line, #e5eaed);
+  border-radius: 10px;
+  background: #fff;
+  color: #96a0a6;
+  box-shadow: 0 1px 2px rgba(30, 48, 59, .03);
+  transition: border-color .15s, box-shadow .15s;
+
+  i {
+    font-size: 15px;
+    color: #a1abb1;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-size: 13px;
+    color: var(--ink, #17242d);
+
+    &::placeholder { color: #a7b0b5; }
+  }
+
+  &:focus-within {
+    border-color: var(--primary, #0092b8);
+    box-shadow: 0 0 0 3px rgba(0, 146, 184, .1);
+
+    i { color: var(--primary, #0092b8); }
+  }
+}
