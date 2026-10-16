@@ -53,7 +53,9 @@ export class InicioScreen implements OnInit {
 
   public obtenerContadores(): void {
     this.dashboardService.obtenerContadores().subscribe({
-      next: (r) => { this.contadores = r; this.cdr.detectChanges(); },
+      next: (r) => {
+        this.contadores = r;
+        this.cdr.detectChanges(); },
       error: (e) => { console.error("Error al obtener contadores", e); }
     });
   }
