@@ -1,1 +1,84 @@
-<p>registrar-prestamo works!</p>
+<div class="modal-registro">
+
+  <header class="modal-head">
+    <div class="modal-head-left">
+      <span class="modal-icon"><i class="bi bi-journal-bookmark"></i></span>
+      <div>
+        <h2>{{ editar ? 'Registrar devolución' : 'Registrar préstamo' }}</h2>
+        <p>Completa la información para continuar.</p>
+      </div>
+    </div>
+    <button class="modal-close" (click)="cerrar()" aria-label="Cerrar">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </header>
+
+  <div class="modal-body">
+    <div class="body-registro">
+
+      <div class="campo">
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de devolución esperada</mat-label>
+          <input matInput type="date" [(ngModel)]="prestamo.fecha_devol_esperada">
+        </mat-form-field>
+        @if (errors.fecha_devol_esperada) { <div class="invalid-feedback">{{ errors.fecha_devol_esperada }}</div> }
+      </div>
+
+      @if (editar) {
+        <div class="campo">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de devolución real</mat-label>
+            <input matInput type="date" [(ngModel)]="prestamo.fecha_devol_real">
+          </mat-form-field>
+          @if (errors.fecha_devol_real) { <div class="invalid-feedback">{{ errors.fecha_devol_real }}</div> }
+        </div>
+      }
+
+      <div class="campo">
+        <mat-form-field appearance="outline">
+          <mat-label>Libro</mat-label>
+          <input matInput
+                 [(ngModel)]="libroSeleccionado"
+                 [matAutocomplete]="autoLibro"
+                 (ngModelChange)="filtrarLibros($event)"
+                 placeholder="Escribe o selecciona el libro">
+          <mat-autocomplete #autoLibro="matAutocomplete"
+                            [displayWith]="mostrarLibro"
+                            (optionSelected)="seleccionarLibro($event)">
+            @for (l of librosFiltrados; track l.id_libro) {
+              <mat-option [value]="l">{{ l.titulo }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        @if (errors.id_libro) { <div class="invalid-feedback">{{ errors.id_libro }}</div> }
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="outline">
+          <mat-label>Cliente</mat-label>
+          <input matInput
+                 [(ngModel)]="clienteSeleccionado"
+                 [matAutocomplete]="autoCliente"
+                 (ngModelChange)="filtrarClientes($event)"
+                 placeholder="Escribe o selecciona el cliente">
+          <mat-autocomplete #autoCliente="matAutocomplete"
+                            [displayWith]="mostrarCliente"
+                            (optionSelected)="seleccionarCliente($event)">
+            @for (c of clientesFiltrados; track c.id) {
+              <mat-option [value]="c">{{ c.user.first_name }} {{ c.user.last_name }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        @if (errors.id_cliente) { <div class="invalid-feedback">{{ errors.id_cliente }}</div> }
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="modal-actions">
+    <button class="btn btn-cancelar" (click)="cerrar()">Cancelar</button>
+    @if (!editar) { <button class="btn btn-registrar" (click)="registrar()">Guardar registro</button> }
+    @if (editar)  { <button class="btn btn-registrar" (click)="actualizar()">Actualizar</button> }
+  </footer>
+
+</div>
