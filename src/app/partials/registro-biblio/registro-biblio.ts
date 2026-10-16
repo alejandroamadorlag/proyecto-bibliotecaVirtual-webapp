@@ -107,11 +107,7 @@ export class RegistroBiblio implements OnInit{
           //Aquí va la ejecución del servicio si todo es correcto
           alert("Usuario registrado correctamente");
           console.log("Usuario registrado: ", response);
-          if(this.token != ""){
-            this.router.navigate(["home"]);
-          }else{
-            this.router.navigate(["/"]);
-          }
+          this.location.back();
         }, (error)=>{
           //Aquí se ejecuta el error
           alert("No se pudo registrar usuario");

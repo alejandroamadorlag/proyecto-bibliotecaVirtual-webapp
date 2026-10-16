@@ -1,1 +1,36 @@
-<p>actividad-screen works!</p>
+<div class="body-actividad">
+
+  <div class="welcome">
+    <p class="eyebrow">ADMINISTRACIÓN</p>
+    <h1>Actividad</h1>
+    <p class="subtitle">Análisis de la actividad de la biblioteca.</p>
+  </div>
+
+  <div class="charts-grid">
+
+    <div class="chart-card">
+      <h2 class="chart-title">Clientes más activos</h2>
+      <p class="chart-sub">Top 5 por préstamos solicitados</p>
+      <div class="chart-box">
+        <canvas baseChart
+                type="bar"
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2 class="chart-title">Libros más prestados</h2>
+      <p class="chart-sub">Top 5 del catálogo</p>
+      <div class="chart-box">
+        <canvas baseChart
+                type="pie"
+                [data]="pieChartData"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>

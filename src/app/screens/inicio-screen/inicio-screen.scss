@@ -1,0 +1,65 @@
+:host {
+  --primary: #0092b8;
+  --primary-dark: #017895;
+  --ink: #17242d;
+  --muted: #6e7b84;
+  --line: #e5eaed;
+  display: block;
+}
+
+.body-inicio {
+  padding: 34px;
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.welcome { margin-bottom: 30px; }
+.welcome .eyebrow {
+  color: var(--primary-dark);
+  font-size: 10px; font-weight: 700; letter-spacing: 1.4px; margin: 0 0 8px;
+}
+.welcome h1 {
+  font-size: 28px; font-weight: 700; letter-spacing: -.9px; margin: 0 0 6px; color: var(--ink);
+}
+.welcome .subtitle { color: var(--muted); font-size: 13px; margin: 0; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1100px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .stats-grid { grid-template-columns: 1fr; } }
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 28px;
+  min-height: 128px;
+  box-shadow: 0 2px 8px rgba(30, 48, 59, .05);
+  transition: .2s;
+  &:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30, 48, 59, .08); }
+}
+
+.stat-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+  flex-shrink: 0;
+}
+.icon--libros    { color: #017895; background: #e6f6f9; }
+.icon--prestamos { color: #d99a2b; background: #fdf3e5; }
+.icon--clientes  { color: #7c5cda; background: #efeafc; }
+.icon--biblios   { color: #2f9e6e; background: #e8f5ef; }
+.icon--generos   { color: #c2497e; background: #fbe9f1; }
+.icon--autores   { color: #4066c7; background: #e8eefc; }
+
+.stat-label  { color: var(--muted); font-size: 13.5px; margin: 0 0 8px; }
+.stat-number { color: var(--ink); font-size: 40px; font-weight: 700; letter-spacing: -1px; margin: 0; line-height: 1; }

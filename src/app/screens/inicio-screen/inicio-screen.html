@@ -1,1 +1,63 @@
-<p>inicio-screen works!</p>
+<div class="body-inicio">
+
+  <div class="welcome">
+    <p class="eyebrow">{{ fecha }}</p>
+    <h1>{{ saludo }}, {{ nombre }}</h1>
+    <p class="subtitle">Aquí tienes un resumen de tu biblioteca.</p>
+  </div>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <span class="stat-icon icon--libros"><i class="bi bi-book"></i></span>
+      <div class="stat-info">
+        <p class="stat-label">Total de libros</p>
+        <p class="stat-number">{{ contadores.total_libros | number }}</p>
+      </div>
+    </div>
+
+    @if (rol !== 'cliente') {
+
+      <div class="stat-card">
+        <span class="stat-icon icon--prestamos"><i class="bi bi-clock-history"></i></span>
+        <div class="stat-info">
+          <p class="stat-label">Préstamos en proceso</p>
+          <p class="stat-number">{{ contadores.prestamos_proceso | number }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon icon--clientes"><i class="bi bi-people"></i></span>
+        <div class="stat-info">
+          <p class="stat-label">Clientes registrados</p>
+          <p class="stat-number">{{ contadores.clientes_registrados | number }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon icon--biblios"><i class="bi bi-person-badge"></i></span>
+        <div class="stat-info">
+          <p class="stat-label">Bibliotecarios registrados</p>
+          <p class="stat-number">{{ contadores.bibliotecarios_registrados | number }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon icon--generos"><i class="bi bi-tags"></i></span>
+        <div class="stat-info">
+          <p class="stat-label">Géneros registrados</p>
+          <p class="stat-number">{{ contadores.generos_registrados | number }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-icon icon--autores"><i class="bi bi-feather"></i></span>
+        <div class="stat-info">
+          <p class="stat-label">Autores registrados</p>
+          <p class="stat-number">{{ contadores.autores_registrados | number }}</p>
+        </div>
+      </div>
+
+    }
+  </div>
+</div>

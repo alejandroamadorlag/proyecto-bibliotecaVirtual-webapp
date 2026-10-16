@@ -11,48 +11,67 @@
 
     <!-- Menú de navegación -->
     <ul class="nav-menu">
-      @if (rol !== 'cliente') {
+
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/inicio" routerLinkActive="active">
             <i class="bi bi-grid"></i><span>Inicio</span>
           </a>
         </li>
+
+        @if (rol !== 'cliente') {
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/autores" routerLinkActive="active">
             <i class="bi bi-pencil-square"></i><span>Autores</span>
           </a>
         </li>
+      }
+
+        @if (rol !== 'cliente') {
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/generos" routerLinkActive="active">
             <i class="bi bi-funnel"></i><span>Géneros</span>
           </a>
         </li>
+      }
+
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/libros" routerLinkActive="active">
             <i class="bi bi-book"></i><span>Libros</span>
           </a>
         </li>
+
+        @if (rol !== 'cliente') {
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/clientes" routerLinkActive="active">
             <i class="bi bi-people"></i><span>Clientes</span>
           </a>
         </li>
+      }
+
+        @if (rol !== 'cliente') {
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/prestamos" routerLinkActive="active">
             <i class="bi bi-clock"></i><span>Préstamos</span>
           </a>
         </li>
+      }
+
+        @if (rol !== 'cliente') {
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/usuarios" routerLinkActive="active">
             <i class="bi bi-person"></i><span>Usuarios</span>
           </a>
         </li>
+      }
+
+
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/actividad" routerLinkActive="active">
             <i class="bi bi-activity"></i><span>Actividad</span>
           </a>
         </li>
-      }
+
+
     </ul>
 
     <!-- Cerrar Sesión: acción de sesión, separada del menú -->

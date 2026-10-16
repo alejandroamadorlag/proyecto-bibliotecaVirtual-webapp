@@ -104,11 +104,7 @@ export class RegistroCliente implements OnInit {
         next: (response) => {
           alert("Usuario registrado correctamente");
           console.log("Usuario registrado: ", response);
-          if (this.token != "") {
-            this.router.navigate(["home"]);
-          } else {
-            this.router.navigate(["/"]);
-          }
+          this.location.back();
         },
         error: (error) => {
           alert("No se pudo registrar usuario");
