@@ -21,7 +21,7 @@ export class ActividadScreen implements OnInit {
   public barChartData: ChartData<'bar'> = {
     labels: [],
     datasets: [
-      { data: [], label: 'Préstamos solicitados',
+      { data: [], label: ' Préstamos solicitados',
         backgroundColor: ['#0092b8', '#f2a93b', '#7c5cda', '#2f9e6e', '#e0607e'],
         borderRadius: 6  }
     ]
@@ -41,7 +41,7 @@ export class ActividadScreen implements OnInit {
   public pieChartData: ChartData<'pie'> = {
     labels: [],
     datasets: [
-      { data: [], backgroundColor: ['#e62b2b', '#f2a93b', '#7c5cda', '#2f9e6e', '#e0607e'] }
+      { data: [],label: ' Veces prestado', backgroundColor: ['#e62b2b', '#f2a93b', '#7c5cda', '#2f9e6e', '#e0607e'] }
     ]
   };
   public pieChartOptions: ChartConfiguration<'pie'>['options'] = {

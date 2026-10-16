@@ -20,7 +20,7 @@ export class LibrosScreen implements OnInit, AfterViewInit {
   public token: string = "";
   public lista_libros: any[] = [];
 
-  public displayedColumns: string[] = ['id_libro', 'titulo', 'autor', 'genero', 'estado', 'editar', 'eliminar'];
+  public displayedColumns: string[] = [];
   public dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,7 +35,13 @@ export class LibrosScreen implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.rol = this.facadeService.getUserGroup();
     this.token = this.facadeService.getSessionToken();
-    if (this.token == "") { this.router.navigate([""]); }
+    if (this.token == "") { this.router.navigate([""]); return; }
+
+    // El cliente ve la tabla pero sin las columnas de acciones
+    this.displayedColumns = this.rol === 'cliente'
+      ? ['id_libro', 'titulo', 'autor', 'genero', 'estado']
+      : ['id_libro', 'titulo', 'autor', 'genero', 'estado', 'editar', 'eliminar'];
+
     this.obtenerLibros();
   }
 

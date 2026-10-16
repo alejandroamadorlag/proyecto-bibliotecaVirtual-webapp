@@ -7,13 +7,16 @@
       <p class="subtitle">Administra todos los títulos de la biblioteca.</p>
     </div>
 
+    @if (rol !== 'cliente') {
     <button class="btn btn--primary" (click)="registrarLibro()">
       <i class="bi bi-plus-lg"></i> Registrar libro
     </button>
+  }
+
   </div>
 
   <div class="container">
-    @if (rol !== 'cliente') {
+
 
       <div class="table-search">
         <i class="bi bi-search"></i>
@@ -71,7 +74,6 @@
             </td>
           </ng-container>
         }
-
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
@@ -81,6 +83,6 @@
                        aria-label="Seleccionar página de libros">
         </mat-paginator>
       </div>
-    }
+
   </div>
 </div>
